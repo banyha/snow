@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faster Pink Snow Animation</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #FFC0CB; /* 핑크색 배경 */
+    }
+
+    .snowflake {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 10px solid #fff; /* 눈색 */
+      pointer-events: none;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    function createSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.className = 'snowflake';
+      document.body.appendChild(snowflake);
+
+      const startX = Math.random() * window.innerWidth;
+      const startY = -10;
+      const speed = 5 + Math.random() * 10; /* 현재보다 5배 빠른 속도 */
+
+      snowflake.style.left = startX + 'px';
+      snowflake.style.top = startY + 'px';
+
+      function snowfall() {
+        const currentY = parseFloat(snowflake.style.top);
+        if (currentY >= window.innerHeight) {
+          snowflake.remove();
+          createSnowflake(); /* 새로운 눈송이 생성 */
+        } else {
+          snowflake.style.top = currentY + speed + 'px';
+          requestAnimationFrame(snowfall);
+        }
+      }
+
+      snowfall();
+    }
+
+    function createSnowfall() {
+      setInterval(createSnowflake, 100); /* 현재보다 5배 빠른 생성 간격 */
+    }
+
+    createSnowfall();
+  </script>
+</body>
+</html>
