@@ -54,8 +54,12 @@
     }
 
     function createSnowfall() {
-      setInterval(createSnowflake, 100);
-    }
+  setTimeout(function() {
+    clearInterval(snowfallInterval); // 현재의 setInterval을 중지합니다.
+  }, 10000); // 10초 후에 실행됩니다.
+
+  const snowfallInterval = setInterval(createSnowflake, 100); // 현재와 동일한 간격으로 눈송이를 생성합니다.
+}
 
     createSnowfall();
   </script>
