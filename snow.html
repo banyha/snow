@@ -8,8 +8,8 @@
     body {
       margin: 0;
       overflow: hidden;
-      background: url('https://t1.daumcdn.net/cfile/tistory/1276D30F4C6FEEC652') no-repeat center center fixed; /* 배경 이미지 설정 */
-      background-size: 100% 100%; /* 이미지가 화면에 꽉 차도록 설정 */
+      background: url('https://t1.daumcdn.net/cfile/tistory/1276D30F4C6FEEC652') no-repeat center center fixed;
+      background-size: 100% 100%;
     }
 
     .snowflake {
@@ -18,7 +18,7 @@
       height: 0;
       border-left: 5px solid transparent;
       border-right: 5px solid transparent;
-      border-bottom: 10px solid #fff; /* 눈색 */
+      border-bottom: 10px solid #fff;
       pointer-events: none;
       opacity: 0.8;
     }
@@ -33,7 +33,7 @@
 
       const startX = Math.random() * window.innerWidth;
       const startY = -10;
-      const speed = 5 + Math.random() * 10; /* 현재보다 5배 빠른 속도 */
+      const speed = 5; // Constant speed value
 
       snowflake.style.left = startX + 'px';
       snowflake.style.top = startY + 'px';
@@ -42,7 +42,7 @@
         const currentY = parseFloat(snowflake.style.top);
         if (currentY >= window.innerHeight) {
           snowflake.remove();
-          createSnowflake(); /* 새로운 눈송이 생성 */
+          createSnowflake();
         } else {
           snowflake.style.top = currentY + speed + 'px';
           requestAnimationFrame(snowfall);
@@ -53,7 +53,7 @@
     }
 
     function createSnowfall() {
-      setInterval(createSnowflake, 100); /* 현재보다 5배 빠른 생성 간격 */
+      setInterval(createSnowflake, 100);
     }
 
     createSnowfall();
